@@ -1,0 +1,22 @@
+{
+  "name": "hunger-numbers-mvp",
+  "version": "0.1.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "start:prod": "node server.js",
+    "build": "npm run build:ui && npm run copy:ui",
+    "build:ui": "cd ui && npm install && npm run build",
+    "copy:ui": "node -e \"const fs=require('fs'),p=require('path');function cp(s,d){if(!fs.existsSync(s))return;fs.mkdirSync(d,{recursive:true});for(const f of fs.readdirSync(s)){const S=p.join(s,f),D=p.join(d,f);if(fs.lstatSync(S).isDirectory())cp(S,D);else fs.copyFileSync(S,D);} }cp('ui/dist','public/ui');\""
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "qrcode": "^1.5.4",
+    "socket.io": "^4.8.1"
+  },
+  "engines": {
+    "node": ">=18.18"
+  }
+}
